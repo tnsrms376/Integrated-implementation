@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.plus.mapper.MemberMapper">
+	<!-- 회원가입 -->
+	<insert id="joinMember">
+		insert into member(member_phone, member_email, member_password, member_name, member_nickname, member_pic, member_marketing, member_point, member_joindate)
+		values(#{memberPhone}, #{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname}, #{memberPic}, #{memberMarketing}, 0, sysdate())
+	</insert>
+	
+	<!-- 로그인 관련 -->
+   <select id="login" parameterType="Int" resultType="MemberVO">
+        SELECT COUNT(*)
+          FROM USER
+         WHERE ID = #{id}
+           AND PASSWORD = #{password}
+    </select>
+	
+</mapper>
